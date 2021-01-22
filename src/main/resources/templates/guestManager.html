@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+                        <a class="nav-item nav-link" href="/room">Rooms</a>
+                        <a class="nav-item nav-link" href="/service">service</a>
+                        <a class="nav-item nav-link" href="/getTicket">getTicket</a>
+                        <a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<h1>All Student</h1>
+
+		<table class="table">
+			<tr>
+                <td>Cmt</td>
+                <td>Name</td>
+				<td>Date of Birth</td>
+                <td>Date at Room</td>
+				<td>Student</td>
+				<td></td>
+            </tr>
+            <tr th:each="guest : ${guests}">
+				<td th:text=${guest.CMT}></td>
+				<td th:text=${guest.Name}></td>
+				<td th:text=${guest.dateOfBirth}></td>
+                <td th:text=${guest.date}></td>
+				<td th:text=${guest.StudentID}></td>
+				<td><a th:href="@{/details(sv_id=${guest.StudentID})}">View Student Info</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

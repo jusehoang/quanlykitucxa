@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	
+		var message = /*[[${wrong}]]*/ 'default';
+		
+		if(message === null){
+			
+		}
+		else{
+			alert(message);
+		}
+	/*]]>*/
+	</script>
+</head>
+
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+                        <a class="nav-item nav-link" href="/room">Rooms</a>
+                        <a class="nav-item nav-link" href="/service">service</a>
+                        <a class="nav-item nav-link" href="/getTicket">getTicket</a>
+                        <a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container_fruid">
+            <h1>Guest Manager</h1>
+            <form action="/all/allGuest">
+                <input type="submit" value="View guest list" class ="btn btn-outline-primary"/>
+            </form>
+
+            <form th:action="@{/all/allGuest}" th:object="${guest}" method="POST">
+                <div th:if="${#fields.hasErrors()}">
+                    <span style="color: red" class="validationError"> Please
+                        correct the problems below and resubmit. </span>
+                </div>
+                <div class="form-group">
+                    <label for="CMT">Student ID</label> <input type="text"
+                        class="form-control" id="CMT" placeholder="CMT"
+                        th:field="*{CMT}"> <span style="color: red"
+                        class="validationError" th:if="${#fields.hasErrors('CMT')}"
+                        th:errors="*{CMT}">Dont have CMT</span>
+                </div>
+                <div class="form-group">
+                    <label for="Name">Name</label> <input type="text"
+                        class="form-control" id="name" placeholder="Name"
+                        th:field="*{Name}"> <span style="color: red"
+                        class="validationError" th:if="${#fields.hasErrors('Name')}"
+                        th:errors="*{Name}">Dont have Name</span>
+                </div>
+                <div class="form-group">
+                    <label for="start">Date Of Birth</label>
+                    <input type="date" id="start" class="form-control" th:field="*{dateOfBirth}" max="2020-12-31">
+                </div>
+                <div class="form-group">
+                    <label for="student">Student ID</label> <input type="text"
+                        class="form-control" id="student" placeholder="Student ID"
+                        name = "Student_ID">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+		</div>
+
+</div>
+</body>
+</html>

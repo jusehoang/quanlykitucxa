@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="/postrequest.js"></script>
+<script src="/getrequest.js"></script>
+<script src="/getRequest1.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+					<a class="nav-item nav-link" href="/room">Rooms</a>
+					<a class="nav-item nav-link" href="/service">service</a>
+					<a class="nav-item nav-link" href="/getTicket">getTicket</a>
+					<a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container_fruid">
+            <h1>Service manager</h1>
+            <table class="table table-hover">
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+					<td>Price</td>
+					<td>Time</td>
+                </tr>
+                <tr th:each="service : ${services}">
+					<td th:text=${service.service_id}></td>
+					<td th:text=${service.service_name}></td>
+                    <td th:text=${service.price}></td>
+					<td th:text=${service.time_to_use}></td>
+                </tr>
+            </table>
+		</div>
+		<form action="/service/getStudent" method="GET">
+			<button class="btn btn-primary">Choose Student</button>
+		</form>
+
+</div>
+</body>
+</html>

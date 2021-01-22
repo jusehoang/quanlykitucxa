@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+						<a class="nav-item nav-link" href="/room">Rooms</a>
+						<a class="nav-item nav-link" href="/service">service</a>
+						<a class="nav-item nav-link" href="/getTicket">getTicket</a>
+						<a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<h1>All Student</h1>
+
+		<table class="table">
+			<tr>
+				<td>Id</td>
+				<td>Cmt</td>
+				<td>Date of Birth</td>
+				<td>Class</td>
+				<td>Country</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr th:each="student : ${students}">
+				<td th:text=${student.sv_id}></td>
+				<td th:text=${student.sv_cmt}></td>
+				<td th:text=${student.sv_date}></td>
+				<td th:text=${student.sv_class}></td>
+				<td th:text=${student.sv_country}></td>
+				<td><a th:href="@{/details(sv_id=${student.sv_id})}">Info</a></td>
+				<td><a th:href="@{/details/delete(sv_id=${student.sv_id})}">Delete</a></td>
+				<td><a th:href="@{/room_details/changeRoom(sv_id=${student.sv_id})}">Pay or Change Room</a></td>
+				<td><a th:href="@{/service/viewAll(sv_id=${student.sv_id})}">View All Service</a></td>
+				<td><a th:href="@{/all/viewGuest(sv_id=${student.sv_id})}">View All Guest</a></td>
+			</tr>
+		</table>
+		<a href="/all/add">Create Student</a>
+	</div>
+</body>
+</html>

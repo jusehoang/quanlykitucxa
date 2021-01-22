@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+	integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+	crossorigin="anonymous" />
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<style>
+	.has-search .form-control {
+		padding-left: 2.375rem;
+	}
+	.has-search .form-control-feedback {
+		position: absolute;
+		z-index: 2;
+		display: block;
+		width: 2.375rem;
+		height: 2.375rem;
+		line-height: 2.375rem;
+		text-align: center;
+		pointer-events: none;
+		color: #aaa;
+	}
+	</style>
+
+<title>Insert title here</title>
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	
+		var message = /*[[${message}]]*/ 'default';
+		console.log(message);
+
+		if(message === null){
+
+		}
+		else{
+			alert(message)
+		}
+	
+	/*]]>*/
+	</script>
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+                        <a class="nav-item nav-link" href="/room">Rooms</a>
+                        <a class="nav-item nav-link" href="/service">service</a>
+                        <a class="nav-item nav-link" href="/getTicket">getTicket</a>
+                        <a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container_fruid">
+            <h1>Order Service</h1>
+            <div class="form-group has-search">
+                <span class="fa fa-search form-control-feedback"></span>
+                <input type="text" class="form-control" placeholder="Search">
+			  </div>
+			  <table class="table table-hover">
+                <tr>
+                    <td>ID</td>
+					<td>Name</td>
+					<td>Price</td>
+					<td>time</td>
+					<td></td>
+                </tr>
+                <tr th:each="service : ${services}">
+					<td th:text=${service.service_id}></td>
+					<td th:text=${service.service_name}></td>
+                    <td th:text=${service.price}></td>
+					<td th:text=${service.time_to_use}></td>
+					<td><a th:href="@{/service/addToCart(service_id=${service.service_id})}">Buy Service</a></td>
+                </tr>
+			</table>
+
+			<form action="/service/getCart" method="GET">
+				<button class="btn btn-danger">View Cart</button>
+			</form>
+
+</div>
+</body>
+</html>

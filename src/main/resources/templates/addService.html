@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="/all">Home <span
+						class="sr-only">(current)</span></a> 
+						<a class="nav-item nav-link" href="/all">Students</a>
+					<a class="nav-item nav-link" href="/room">Rooms</a>
+					<a class="nav-item nav-link" href="/service">service</a>
+					<a class="nav-item nav-link" href="/getTicket">getTicket</a>
+					<a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container_fruid">
+            <h1>Create service</h1>
+            <form th:action="@{/service}" th:object="${service}" method="POST">
+                <div th:if="${#fields.hasErrors()}">
+                    <span style="color: red" class="validationError"> Please
+                        correct the problems below and resubmit. </span>
+                </div>
+                <div class="form-group">
+                    <label for="SName">Service Name</label> <input type="text"
+                        class="form-control" id="SName" placeholder="Service Name"
+                        th:field="*{service_name}"> <span style="color: red"
+                        class="validationError" th:if="${#fields.hasErrors('service_name')}"
+                        th:errors="*{service_name}">Dont have name</span>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label> <input type="text"
+                        class="form-control" id="price" placeholder="Price"
+                        th:field="*{price}"> <span style="color: red"
+                        class="validationError" th:if="${#fields.hasErrors('price')}"
+                        th:errors="*{price}">Dont have Price</span>
+                </div>
+                <div class="form-group">
+                    <label for="time_to_use">Time to use</label> <input type="text"
+                        class="form-control" id="time_to_use" placeholder="Time to use"
+                        th:field="*{time_to_use}"> <span style="color: red"
+                        class="validationError" th:if="${#fields.hasErrors('time_to_use')}"
+                        th:errors="*{time_to_use}">Dont have time </span>
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+		</div>
+
+</div>
+</body>
+</html>

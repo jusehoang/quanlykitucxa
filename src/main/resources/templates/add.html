@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/all">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link" href="/all">Students</a>
+					<a class="nav-item nav-link" href="/room">Rooms</a>
+					<a class="nav-item nav-link" href="/service">service</a>
+					<a class="nav-item nav-link" href="/getTicket">getTicket</a>
+					<a class="nav-item nav-link" href="/all/allGuest">Guest</a>
+					
+				</div>
+			</div>
+		</nav>
+		<h1>Create Student</h1>
+		<form th:action="@{/all}" th:object="${student}" method="POST">
+			<div th:if="${#fields.hasErrors()}">
+				<span style="color: red" class="validationError"> Please
+					correct the problems below and resubmit. </span>
+			</div>
+			<div class="form-group">
+				<label for="sv_id">Student ID</label> <input type="text"
+					class="form-control" id="sv_id" placeholder="Id"
+					th:field="*{sv_id}"> <span style="color: red"
+					class="validationError" th:if="${#fields.hasErrors('sv_id')}"
+					th:errors="*{sv_id}">Must have id</span>
+			</div>
+			<div class="form-group">
+				<label for="sv_cmt">CMT</label> <input type="text"
+					class="form-control" id="sv_cmt" placeholder="CMT"
+					th:field="*{sv_cmt}"> <span style="color: red"
+					class="validationError" th:if="${#fields.hasErrors('sv_cmt')}"
+					th:errors="*{sv_cmt}">CMT Error</span>
+			</div>
+			<div class="form-group">
+				<label for="sv_date">Date Of Birth</label> <input type="text"
+					class="form-control" id="sv_date" placeholder="Date Of Birth"
+					th:field="*{sv_date}">
+			</div>
+			<div class="form-group">
+				<label for="sv_class">Class</label> <input type="text"
+					class="form-control" id="sv_class" placeholder="Class"
+					th:field="*{sv_class}"><span style="color: red"
+					class="validationError" th:if="${#fields.hasErrors('sv_class')}"
+					th:errors="*{sv_class}">CMT Error</span>
+			</div>
+			<div class="form-group">
+				<label for="sv_country">Country</label> <input type="text"
+					class="form-control" id="sv_country" placeholder="Country"
+					th:field="*{sv_country}"><span style="color: red"
+					class="validationError" th:if="${#fields.hasErrors('sv_country')}"
+					th:errors="*{sv_country}">CMT Error</span>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</body>
+</html>
